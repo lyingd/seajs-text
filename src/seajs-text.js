@@ -132,10 +132,12 @@ function xhr(url, callback) {
     if (r.readyState === 4) {
       // Support local file
       if (r.status > 399 && r.status < 600) {
+        callback = null
         throw new Error("Could not load: " + url + ", status = " + r.status)
       }
       else {
         callback(r.responseText)
+        callback = null
       }
     }
   }
